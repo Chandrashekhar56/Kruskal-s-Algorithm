@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+var total_vertices = 5;
+var p = Array(total_vertices).fill(0);
+var INF = 1000000000;
+function search(x)
+{
+	while (p[x] != x)
+		x = p[x];
+	return x;
+}
+function function_union(x, y)
+{
+	var m = search(x);
+	var n = search(y);
+	p[m] = n;
+}
+function kruskalMinimumSpanningTree(matrix)
+{
+	var minimum_cost = 0;
+	for (var x = 0; x < total_vertices; x++)
+		p[x] = x;
+	var count_edge = 0;
+	while (count_edge < total_vertices - 1)
+	{
+		var minimum = INF, m = -1, n = -1;
+		for (var x = 0; x < total_vertices; x++)
+		{
+			for (var y = 0; y < total_vertices; y++)
+			{
+				if (search(x) != search(y) && matrix[x][y] < minimum)
+				{
+					minimum = matrix[x][y];
+					m = x;
+					n = y;
+				}
+			}
+		}
+
+		function_union(m, n);
+		document.write(`Edge ${count_edge++}:(${m},
+		${n}) cost:${minimum} <br>`);
+		minimum_cost += minimum;
+	}
+	document.write(`<br> Minimum cost= ${minimum_cost} <br>`);
+}
+var matrix = [
+	[INF, 10, INF, 16, INF],
+	[21, INF, 1, 18, 15],
+	[INF, 13, INF, INF, 5],
+	[16, 18, INF, INF, 9],
+	[INF, 5, 17, 29, INF]];
+kruskalMinimumSpanningTree(matrix);
+</script>
+  </body>
+</html>

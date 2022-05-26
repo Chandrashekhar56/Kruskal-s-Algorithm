@@ -50,12 +50,13 @@ function kruskalMinimumSpanningTree(matrix)
 	}
 	document.write(`<br> Minimum cost= ${minimum_cost} <br>`);
 }
-var matrix = [
+var matrix = [	
 	[INF, 10, INF, 16, INF],
-	[21, INF, 1, 18, 15],
-	[INF, 13, INF, INF, 5],
+	[10, INF, 1, 18, 15],
+	[INF, 1, INF, INF, 5],
 	[16, 18, INF, INF, 9],
-	[INF, 5, 17, 29, INF]];
+	[INF, 15, 5, 9, INF]
+];
 kruskalMinimumSpanningTree(matrix);
 </script>
   </body>
